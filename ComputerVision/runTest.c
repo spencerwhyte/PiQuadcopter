@@ -14,7 +14,7 @@ void convert_raw_to_image(FILE *file, rgb_image *image, long length) {
 int main() {
     // Read file.
     long length;
-    FILE *f = fopen("still-640x480.data", "rb");
+    FILE *f = fopen("test.data", "rb");
     if (!f)
     {
         return -1;

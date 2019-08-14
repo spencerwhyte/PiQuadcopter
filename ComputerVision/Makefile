@@ -1,8 +1,8 @@
-CC = g++ 
+CC = gcc 
 src = $(wildcard *.c)
 obj = $(src:.c=.o)
 
-LDFLAGS = -lm -lpng #-std=c11
+LDFLAGS = -lm -lpng -Wall #-std=c11
 
 build: $(obj)
 	$(CC) -o build.out $^ $(LDFLAGS) 

@@ -145,7 +145,7 @@ int main (int argc, char *argv[])
         for (x = 0; x < fruit.width; x++) {
             pixel_t * pixel = pixel_at (& fruit, x, y);
             uint16_t pixelValue = imageData[x + y * fruit.width];
-            uint8_t scaledValue = (uint8_t)(255 * (pixelValue / (255 * 3.0)));
+            uint8_t scaledValue = (uint8_t)(UINT8_MAX * ((double)pixelValue / UINT16_MAX));
  
             pixel->red = scaledValue;
             pixel->green = scaledValue;

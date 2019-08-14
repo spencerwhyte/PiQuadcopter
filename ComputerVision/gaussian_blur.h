@@ -3,4 +3,4 @@
 #include "gaussian_matrix.h"
 #include "matrix_operations.h"
 
-void gauss_blur(greyscale_image* image, greyscale_image* gs_smooth);
+void apply_gauss_blur(greyscale_image* image, greyscale_image* gs_smooth);

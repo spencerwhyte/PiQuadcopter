@@ -3,7 +3,7 @@
 
 void set_sobel_magnitude(greyscale_image* sobel_magnitude, greyscale_pixel gx_value, greyscale_pixel gy_value, int width, int height) {
     greyscale_pixel pixel_magnitude;
-    pixel_magnitude.pixel = sqrt((gx_value.pixel*gx_value.pixel)+(gy_value.pixel*gy_value.pixel));
+    pixel_magnitude.pixel = (uint16_t)(sqrt((gx_value.pixel*gx_value.pixel)+(gy_value.pixel*gy_value.pixel)) / 1.4142135624);
     set_greyscale_pixel(sobel_magnitude, width, height, pixel_magnitude);
 }
 
@@ -23,7 +23,7 @@ void sobel(greyscale_image *image, greyscale_image* sobel_magnitude, matrix* sob
     matrix gy;
     
     float gx_matrix[9] = {-1, 0, 1, -2, 0, 2, -1, 0, 1};
-    float gy_matrix[9] = {-1, -2, -1, 0, 0, 0, 1, 2, 1};
+    float gy_matrix[9] = {1, 2, 1, 0, 0, 0, -1, -2, -1};
     
     init_matrix(&gx, 3, 3);
     init_matrix(&gy, 3, 3);
@@ -34,7 +34,7 @@ void sobel(greyscale_image *image, greyscale_image* sobel_magnitude, matrix* sob
     //sobel_convolution 
     for (int x = 0; x < image->width; x++) {
         for (int y = 0; y < image->height; y++) {
-
+            // look into non symetric convolution
             //gx
             greyscale_pixel gx_value;
             gx_value.pixel = get_mod_pixel_value(&gx, image, x, y);
